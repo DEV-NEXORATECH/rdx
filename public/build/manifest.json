@@ -1,12 +1,24 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-CJ3T7gAD.css",
+    "file": "assets/app-B0-9aRFv.css",
     "src": "resources/css/app.css",
     "isEntry": true,
     "name": "app",
     "names": [
       "app.css"
     ]
+  },
+  "resources/img/brand-logo.png": {
+    "file": "assets/brand-logo-DN2Hcj55.png",
+    "src": "resources/img/brand-logo.png"
+  },
+  "resources/img/favicon.svg": {
+    "file": "assets/favicon-BtXzr7P5.svg",
+    "src": "resources/img/favicon.svg"
+  },
+  "resources/img/login-logistics.png": {
+    "file": "assets/login-logistics-DjRq4W3B.png",
+    "src": "resources/img/login-logistics.png"
   },
   "resources/js/app.js": {
     "file": "assets/app-CxCs0caN.js",
