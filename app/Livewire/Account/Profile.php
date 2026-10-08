@@ -3,6 +3,7 @@
 namespace App\Livewire\Account;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
@@ -77,11 +78,17 @@ class Profile extends Component
         ];
 
         if ($this->profile_photo) {
-            $data['profile_photo_path'] = $this->profile_photo->store('profiles', 'public');
+            File::ensureDirectoryExists(public_path('uploads/profiles'));
+            $filename = $this->profile_photo->hashName();
+            $this->profile_photo->move(public_path('uploads/profiles'), $filename);
+            $data['profile_photo_path'] = 'uploads/profiles/'.$filename;
         }
 
         if ($this->ktp_photo) {
-            $data['ktp_photo_path'] = $this->ktp_photo->store('ktp', 'public');
+            File::ensureDirectoryExists(public_path('uploads/ktp'));
+            $filename = $this->ktp_photo->hashName();
+            $this->ktp_photo->move(public_path('uploads/ktp'), $filename);
+            $data['ktp_photo_path'] = 'uploads/ktp/'.$filename;
         }
 
         $user->update($data);

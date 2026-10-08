@@ -9,7 +9,7 @@
             <div class="bg-primary px-6 py-8 text-center text-white">
                 <div class="mx-auto flex h-28 w-28 items-center justify-center overflow-hidden rounded-full border-4 border-white/80 bg-white/20 shadow-lg">
                     @if ($user->profile_photo_path)
-                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($user->profile_photo_path) }}" alt="Foto {{ $user->name }}" class="h-full w-full object-cover">
+                        <img src="{{ str_starts_with($user->profile_photo_path, 'uploads/') ? asset($user->profile_photo_path) : \Illuminate\Support\Facades\Storage::disk('public')->url($user->profile_photo_path) }}" alt="Foto {{ $user->name }}" class="h-full w-full object-cover">
                     @else
                         <span class="text-4xl font-bold">{{ strtoupper(substr($user->name, 0, 1)) }}</span>
                     @endif
@@ -56,7 +56,7 @@
                     </label>
                     <p class="mt-2 text-xs text-muted">Format JPG, PNG, atau WEBP. Maksimal 4 MB.</p>
                     @error('ktp_photo') <p class="text-xs text-danger">{{ $message }}</p> @enderror
-                    @if ($user->ktp_photo_path)<a href="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($user->ktp_photo_path) }}" target="_blank" class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline">Lihat dokumen KTP tersimpan</a>@endif
+                    @if ($user->ktp_photo_path)<a href="{{ str_starts_with($user->ktp_photo_path, 'uploads/') ? asset($user->ktp_photo_path) : \Illuminate\Support\Facades\Storage::disk('public')->url($user->ktp_photo_path) }}" target="_blank" class="mt-3 inline-flex text-sm font-semibold text-primary hover:underline">Lihat dokumen KTP tersimpan</a>@endif
                 </div>
                 <div class="flex flex-wrap items-center gap-3 border-t border-border pt-6">
                     <x-button type="submit" variant="primary">Simpan Biodata</x-button>
