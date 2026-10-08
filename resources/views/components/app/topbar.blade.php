@@ -45,8 +45,12 @@
                     aria-haspopup="menu"
                     :aria-expanded="open"
                 >
-                    <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-100 text-sm font-bold text-primary-hover">
-                        {{ str($user?->name)->substr(0, 1)->upper() }}
+                    <span class="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-primary-100 text-sm font-bold text-primary-hover ring-1 ring-border">
+                        @if ($user?->profile_photo_path)
+                            <img src="{{ str_starts_with($user->profile_photo_path, 'uploads/') ? asset($user->profile_photo_path) : \Illuminate\Support\Facades\Storage::disk('public')->url($user->profile_photo_path) }}" alt="Foto {{ $user->name }}" class="h-full w-full object-cover">
+                        @else
+                            {{ str($user?->name)->substr(0, 1)->upper() }}
+                        @endif
                     </span>
                     <span class="hidden text-left sm:block">
                         <span class="block max-w-[10rem] truncate text-sm font-semibold text-heading">{{ $user?->name }}</span>
