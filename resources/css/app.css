@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+/* ============================================================
+   JobFinance Design Tokens — navy blue + warm gold/brown brand palette
+   ============================================================ */
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+        'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
+
+    --color-background: #f8fafc;
+    --color-surface: #ffffff;
+
+    --color-primary: #315b9b;
+    --color-primary-hover: #264a81;
+    --color-primary-soft: #eef3fa;
+    --color-primary-50: #f3f6fb;
+    --color-primary-100: #dce6f4;
+    --color-primary-200: #bdcfe8;
+    --color-primary-400: #5e82b6;
+    --color-primary-500: #426da9;
+    --color-primary-600: #315b9b;
+    --color-primary-700: #264a81;
+
+    --color-brand-brown: #b89259;
+    --color-brand-brown-hover: #9c7848;
+    --color-brand-brown-soft: #f7f0e5;
+
+    --color-heading: #0f172a;
+    --color-text: #334155;
+    --color-muted: #64748b;
+    --color-border: #e2e8f0;
+
+    --color-success: #16a34a;
+    --color-success-soft: #f0fdf4;
+    --color-warning: #b89259;
+    --color-warning-soft: #f7f0e5;
+    --color-danger: #dc2626;
+    --color-danger-soft: #fef2f2;
+
+    --color-slate: #64748b;
+
+    --radius-card: 0.75rem;
+
+    --default-border-color: #e2e8f0;
+}
+
+@layer base {
+    html {
+        font-feature-settings: 'cv11', 'ss01';
+    }
+
+    body {
+        @apply bg-background text-text antialiased;
+    }
+
+    input:not([type='checkbox']):not([type='radio']),
+    select,
+    textarea {
+        @apply rounded-lg border border-border bg-white px-3 py-2 text-sm text-text shadow-xs transition-colors placeholder:text-muted/70;
+    }
+
+    input:not([type='checkbox']):not([type='radio']):focus,
+    select:focus,
+    textarea:focus {
+        @apply border-brand-brown outline-none ring-2 ring-brand-brown/25;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+
+    ::selection {
+        @apply bg-primary-100 text-primary-hover;
+    }
+
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 transparent;
+    }
+
+    *::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        border-radius: 9999px;
+        background: #cbd5e1;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: transparent;
+    }
+}
+
+@layer utilities {
+    .filter-toolbar,
+    div.mt-6.flex.justify-between {
+        @apply rounded-2xl border border-brand-brown/25 bg-brand-brown-soft/45 p-3 sm:p-4;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    /* Keep list tables aligned with the logo's primary blue palette. */
+    table thead.bg-slate-50 {
+        background-color: #315b9b;
+        color: #ffffff;
+        border-color: #315b9b;
+    }
+
+    table thead.bg-slate-50 th,
+    table thead.bg-slate-50 button {
+        color: #ffffff;
+    }
+
+    table thead.bg-slate-50 button:hover {
+        color: #f7f0e5;
+    }
+
+    .focus-ring {
+        @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
+    }
+
+    .input-base {
+        @apply block w-full rounded-lg border-border bg-white px-3 py-2 text-sm text-text shadow-xs placeholder:text-muted/70 focus:border-brand-brown focus:ring-2 focus:ring-brand-brown/30 disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-muted;
+    }
+}
