@@ -123,6 +123,12 @@
         color: #f7f0e5;
     }
 
+    /* Form cards should use the full content width instead of leaving an empty column. */
+    .max-w-2xl,
+    .max-w-3xl {
+        max-width: 100% !important;
+    }
+
     .focus-ring {
         @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white;
     }
