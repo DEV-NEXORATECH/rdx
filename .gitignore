@@ -1,0 +1,15 @@
+/vendor/
+/node_modules/
+/.env
+/.env.*
+!/.env.example
+/public/hot
+/public/storage
+/storage/*.key
+/storage/framework/
+/storage/logs/*.log
+/bootstrap/cache/*.php
+
+# Keep compiled Vite assets in Git so production deployments receive them.
+!/public/build/
+!/public/build/**
