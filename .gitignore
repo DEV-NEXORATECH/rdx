@@ -10,6 +10,5 @@
 /storage/logs/*.log
 /bootstrap/cache/*.php
 
-# Keep compiled Vite assets in Git so production deployments receive them.
-!/public/build/
-!/public/build/**
+# Compiled Vite assets are generated during deployment and should not be tracked.
+/public/build/
