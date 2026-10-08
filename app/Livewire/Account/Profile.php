@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\File;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
+use RuntimeException;
 
 class Profile extends Component
 {
@@ -80,14 +81,22 @@ class Profile extends Component
         if ($this->profile_photo) {
             File::ensureDirectoryExists(public_path('uploads/profiles'));
             $filename = $this->profile_photo->hashName();
-            $this->profile_photo->move(public_path('uploads/profiles'), $filename);
+            $target = public_path('uploads/profiles/'.$filename);
+            if (! copy($this->profile_photo->getRealPath(), $target)) {
+                throw new RuntimeException('Foto profil tidak dapat disimpan.');
+            }
+            @unlink($this->profile_photo->getRealPath());
             $data['profile_photo_path'] = 'uploads/profiles/'.$filename;
         }
 
         if ($this->ktp_photo) {
             File::ensureDirectoryExists(public_path('uploads/ktp'));
             $filename = $this->ktp_photo->hashName();
-            $this->ktp_photo->move(public_path('uploads/ktp'), $filename);
+            $target = public_path('uploads/ktp/'.$filename);
+            if (! copy($this->ktp_photo->getRealPath(), $target)) {
+                throw new RuntimeException('Dokumen KTP tidak dapat disimpan.');
+            }
+            @unlink($this->ktp_photo->getRealPath());
             $data['ktp_photo_path'] = 'uploads/ktp/'.$filename;
         }
 
